@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Black Crown Rides | DFW Luxury Transportation</title>
+  <meta name="description" content="Black Crown Rides offers premium DFW luxury transportation. Book a private Cadillac Escalade ESV with a dedicated chauffeur for airport transfers and executive travel." />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="stylesheet" href="mobile.css" />
+  <script src="config.js"></script>
+  <script>
+    (function () {
+      const isMobile =
+        (navigator.userAgentData && navigator.userAgentData.mobile) ||
+        /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        );
+      const isSmall = window.matchMedia('(max-width: 900px)').matches;
+      if (!isMobile && !isSmall) {
+        window.location.replace('index.html' + window.location.hash);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="brand-header" aria-label="Black Crown Rides">
+    <a class="brand-mark" href="#book">
+      <img src="assets/logo.png" alt="Black Crown Rides" class="brand-logo" />
+    </a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="eyebrow">DFW Luxury Transportation</span>
+      <h1>Book a luxury ride in Texas with a Black Cadillac Escalade ESV and dedicated chauffeur.</h1>
+      <p>
+        Premium door-to-door rides with professional chauffeurs and a black Escalade.
+        Reserve one-way or round-trip service in minutes.
+      </p>
+      <a class="primary-btn" href="#book">Reserve Service</a>
+      <div class="hero-pills">
+        <span class="hero-pill">Cadillac Escalade ESV</span>
+        <span class="hero-pill">DFW Airport Transfers</span>
+      </div>
+      <img src="assets/cadillac-escalade-esv.png" alt="Black Cadillac Escalade ESV" />
+    </section>
+
+    <section class="services">
+      <h2>Travel Options</h2>
+      <div class="card">
+        <h3>One Way</h3>
+        <p>Direct chauffeured service for a single route.</p>
+      </div>
+      <div class="card">
+        <h3>Round Trip</h3>
+        <p>Set pickup and dropoff legs for the full return journey.</p>
+      </div>
+      <div class="card">
+        <h3>City to City</h3>
+        <p>Private travel between cities with luxury door-to-door service.</p>
+      </div>
+      <div class="card">
+        <h3>Airport Transfer</h3>
+        <p>Airport pickup or dropoff with luggage support.</p>
+      </div>
+    </section>
+
+    <section class="pricing">
+      <h2>Signature Flat Rates</h2>
+      <div class="card">
+        <h3>Hourly Rate</h3>
+        <strong data-price-hourly>$79 / hour</strong>
+        <p>Cadillac Escalade ESV with professional Texas chauffeur.</p>
+        <small>*Up to 10 mile radius</small>
+      </div>
+      <div id="mobile-route-list" class="mobile-route-list"></div>
+    </section>
+
+    <section id="book" class="booking">
+      <h2>Reserve Chauffeured Service</h2>
+      <form class="booking-form" id="simple-booking-form">
+        <div class="mode-toggle">
+          <button class="toggle active" type="button" data-booking-type="hourly">Hourly</button>
+          <button class="toggle" type="button" data-booking-type="route">Set Route</button>
+        </div>
+        
+        <label>
+          Full Name
+          <input type="text" name="fullName" placeholder="Your name" required />
+        </label>
+        
+        <label>
+          Contact Number
+          <input type="tel" name="contactNumber" placeholder="+1 (817) 555-0123" required />
+        </label>
+        
+        <label>
+          Date
+          <input type="date" name="serviceDate" required />
+        </label>
+        
+        <label>
+          Time
+          <input type="time" name="serviceTime" required />
+        </label>
+        
+        <label>
+          Service Type
+          <select name="serviceType" required>
+            <option value="">Select service type</option>
+            <option value="Hourly">Hourly Service</option>
+            <option value="Airport Transfer">Airport Transfer</option>
+            <option value="City Transfer">City Transfer</option>
+            <option value="One Way">One Way</option>
+            <option value="Round Trip">Round Trip</option>
+          </select>
+        </label>
+        
+        <label>
+          Vehicle
+          <select name="vehicle" required>
+            <option value="">Select vehicle</option>
+            <option value="Cadillac Escalade ESV">Cadillac Escalade ESV</option>
+            <option value="Chevy Suburban">Chevy Suburban</option>
+          </select>
+        </label>
+        
+        <div id="hourly-fields">
+          <label>
+            Pickup Address
+            <input type="text" name="pickupAddress" placeholder="Enter pickup address" />
+          </label>
+          <label>
+            Estimated Hours
+            <input type="number" name="estimatedHours" min="1" placeholder="Number of hours" />
+          </label>
+        </div>
+        
+        <div id="route-fields" style="display: none;">
+          <label>
+            Route
+            <select name="selectedRoute">
+              <option value="">Select route</option>
+              <option value="DFW to Downtown Dallas - $125">DFW to Downtown Dallas - $125</option>
+              <option value="DAL to Fort Worth - $165">DAL to Fort Worth - $165</option>
+              <option value="Dallas to Austin - $699">Dallas to Austin - $699</option>
+            </select>
+          </label>
+        </div>
+        
+        <label>
+          Additional Notes
+          <textarea name="notes" placeholder="Any special requests or notes" rows="3"></textarea>
+        </label>
+        
+        <button class="primary-btn" type="submit">Request Booking</button>
+      </form>
+      <div class="contact">
+        <strong>+1 (817) 760-8555</strong>
+        <a href="mailto:info@blackcrownride.com">info@blackcrownride.com</a>
+      </div>
+      <div class="contact" style="margin-top: 16px; text-align: left;">
+        <strong style="display: block; margin-bottom: 8px;">Service Areas</strong>
+        <span style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">Grapevine · Southlake · Colleyville · Keller · Trophy Club · Flower Mound</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mobile-footer">
+    <span>© 2026 Black Crown Rides. All rights reserved.</span>
+    <a href="index.html?desktop=1">View desktop site</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

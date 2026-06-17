@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Black Crown Rides | DFW Luxury Transportation</title>
+  <meta name="description" content="Black Crown Rides offers premium DFW luxury transportation. Book a private Cadillac Escalade ESV with a dedicated chauffeur for airport transfers and executive travel." />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="config.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('desktop') === '1') {
+        sessionStorage.setItem('forceDesktop', '1');
+        return;
+      }
+      if (sessionStorage.getItem('forceDesktop') === '1') {
+        return;
+      }
+      const isMobile =
+        (navigator.userAgentData && navigator.userAgentData.mobile) ||
+        /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        );
+      const isSmall = window.matchMedia('(max-width: 900px)').matches;
+      if (isMobile || isSmall) {
+        const target = 'mobile.html' + window.location.hash;
+        if (!window.location.pathname.endsWith('mobile.html')) {
+          window.location.replace(target);
+        }
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="halo"></div>
+
+  <header class="brand-header" aria-label="Black Crown Rides">
+    <a class="brand-mark" href="#book">
+      <img src="assets/logo.png" alt="Black Crown Rides" class="brand-logo" />
+    </a>
+  </header>
+
+  <main>
+    <section class="hero reveal">
+      <div class="hero-content">
+        <span class="eyebrow">DFW Luxury Transportation</span>
+        <h1>Book a luxury ride in Texas with a Black Cadillac Escalade ESV and dedicated chauffeur.</h1>
+        <p class="lede">
+          Premium door-to-door transportation for airport transfers, business travel,
+          nights out, and special events across Texas. Book a direct ride or round trip in minutes.
+        </p>
+        <div class="hero-cta">
+          <a class="primary-btn" href="#book">Reserve Chauffeured Service</a>
+          <a class="secondary-btn" href="#services">Explore Services</a>
+        </div>
+        <div class="hero-pills">
+          <span class="hero-pill">Texas airport transfers</span>
+          <span class="hero-pill">Cadillac Escalade ESV</span>
+        </div>
+        <div class="hero-metrics">
+          <div>
+            <span>Professional</span>
+            <strong>Private Chauffeurs</strong>
+          </div>
+          <div>
+            <span>Vehicles</span>
+            <strong>Executive Grade</strong>
+          </div>
+          <div>
+            <span>Service</span>
+            <strong>Texas Based</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section reveal services">
+      <div class="section-header">
+        <h2>Travel Options</h2>
+        <p>Private transportation for Texas executives, families, and VIP guests.</p>
+      </div>
+      <div class="service-grid">
+        <article class="service-tile">
+          <h3>One Way</h3>
+          <p>Direct chauffeured service for a single route.</p>
+          <span class="service-tag">Single direct route</span>
+        </article>
+        <article class="service-tile">
+          <h3>Round Trip</h3>
+          <p>Build a full return journey with paired pickup and dropoff legs.</p>
+          <span class="service-tag">Pickup + dropoff legs</span>
+        </article>
+        <article class="service-tile">
+          <h3>City to City</h3>
+          <p>Private travel between cities with luxury door-to-door service.</p>
+          <span class="service-tag">City transfer</span>
+        </article>
+        <article class="service-tile">
+          <h3>Airport Transfer</h3>
+          <p>Airport pickup or dropoff with polished timing and luggage support.</p>
+          <span class="service-tag">Airport service</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="fleet" class="section reveal fleet-showcase">
+      <div class="section-header">
+        <h2>Cadillac Escalade ESV Fleet</h2>
+        <p>One flagship SUV for a quiet, spacious, executive ride.</p>
+      </div>
+      <div class="fleet-grid">
+        <article class="fleet-card suburban-card float slow">
+          <img src="assets/cadillac-escalade-esv.png" alt="Black Cadillac Escalade ESV" />
+          <div>
+            <h3>Cadillac Escalade ESV</h3>
+            <p>Commanding presence, full-size comfort, and a polished black-SUV profile.</p>
+            <ul>
+              <li>Executive SUV seating</li>
+              <li>Rear climate zones</li>
+              <li>Privacy glass</li>
+              <li>OnStar Safety & Security services</li>
+              <li>OnStar Wifi</li>
+            </ul>
+          </div>
+        </article>
+        <article class="fleet-card float">
+          <img src="interior-black.jpg" alt="Jet black interior" class="no-filter" />
+          <div>
+            <h3>Jet Black Interior</h3>
+            <p>Jet‑black cabin with clean lines and a calm, private atmosphere.</p>
+            <ul>
+              <li>All‑black seating</li>
+              <li>Dark dash and panels</li>
+              <li>Quiet, composed cabin</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" class="section reveal experience">
+      <div class="experience-text">
+        <h2>Texas trips with a calmer ride.</h2>
+        <p>
+          Built for guests who want a polished chauffeur, a premium SUV, and reliable timing
+          from pickup to arrival. We handle the route so you can focus on the day.
+        </p>
+        <div class="experience-points">
+          <div>
+            <h4>Premium Arrival</h4>
+            <p>Step out of a black Escalade that fits business, events, and airport service.</p>
+          </div>
+          <div>
+            <h4>Local Coordination</h4>
+            <p>Texas pickups, curbside timing, and smooth departures handled with care.</p>
+          </div>
+        </div>
+      </div>
+      <div class="experience-panel">
+        <h3>Client feedback</h3>
+        <blockquote>
+          "The Escalade was spotless, comfortable, and right on time."
+          <span>— Marco T., Client</span>
+        </blockquote>
+        <blockquote>
+          "Easy airport pickup and a smooth ride across town. Highly recommend."
+          <span>— Priya S., Client</span>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="pricing" class="section reveal pricing">
+      <div class="section-header">
+        <h2>Signature Route Pricing</h2>
+        <p>Flat rates for chauffeur‑driven routes.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Hourly Rate</h3>
+          <p>Flexible booking for local trips or multi‑stop days.</p>
+          <span class="price" data-price-hourly>$79 / hour</span>
+          <ul>
+            <li>Ideal for meetings & events</li>
+            <li>Chauffeured Cadillac Escalade ESV included</li>
+            <small class="fine-print">*Up To 10 mile radius</small>
+          </ul>
+          <a
+            class="secondary-btn"
+            href="mailto:info@blackcrownride.com?subject=Hourly%20Chauffeured%20Service&body=Hello%2C%0D%0A%0D%0AI%20would%20like%20to%20book%20the%20%2479%2Fhour%20chauffeured%20service.%0D%0ADate%2Ftime%3A%0D%0AEstimated%20hours%3A%0D%0APickup%20area%3A%0D%0AContact%20number%3A%0D%0A%0D%0AThanks!"
+          >
+            Request Hourly
+          </a>
+        </div>
+        <div id="featured-route-list" class="pricing-routes-inline"></div>
+      </div>
+    </section>
+
+    <section id="book" class="section reveal booking">
+      <div class="section-header">
+        <h2>Book Your Ride</h2>
+        <p>Contact us directly to reserve your premium chauffeur service.</p>
+      </div>
+      <div class="booking-info-grid">
+        <div class="booking-info-card">
+          <div class="info-icon">📞</div>
+          <h3>Call Us</h3>
+          <p>Speak directly with our team for immediate booking assistance.</p>
+          <a href="tel:+18177608555" class="primary-btn">+1 (817) 760-8555</a>
+        </div>
+        <div class="booking-info-card">
+          <div class="info-icon">✉️</div>
+          <h3>Email Us</h3>
+          <p>Send us your trip details and we'll respond within 24 hours.</p>
+          <a href="mailto:info@blackcrownride.com" class="primary-btn">info@blackcrownride.com</a>
+        </div>
+        <div class="booking-info-card">
+          <div class="info-icon"><img src="assets/texas-limo.png" alt="Texas" style="width: 120px; height: auto;" /></div>
+          <h3>Service Area</h3>
+          <p>Premium chauffeur service across the DFW area.</p>
+          <ul style="list-style: none; display: grid; gap: 6px; margin-top: 10px; font-size: 0.9rem; color: rgba(255,255,255,0.85);">
+            <li>📍 Grapevine</li>
+            <li>📍 Southlake</li>
+            <li>📍 Colleyville</li>
+            <li>📍 Keller</li>
+            <li>📍 Trophy Club</li>
+            <li>📍 Flower Mound</li>
+          </ul>
+        </div>
+      </div>
+      
+      <form class="booking-form" id="desktop-booking-form">
+        <h3>Request a Booking</h3>
+        <div class="form-grid">
+          <label>
+            Full Name
+            <input type="text" name="fullName" placeholder="Your name" required />
+          </label>
+          
+          <label>
+            Contact Number
+            <input type="tel" name="contactNumber" placeholder="+1 (817) 555-0123" required />
+          </label>
+          
+          <label>
+            Service Type
+            <select name="serviceType" required>
+              <option value="">Select service type</option>
+              <option value="Hourly">Hourly Service</option>
+              <option value="Airport Transfer">Airport Transfer</option>
+              <option value="City Transfer">City Transfer</option>
+              <option value="One Way">One Way</option>
+              <option value="Round Trip">Round Trip</option>
+            </select>
+          </label>
+          
+          <label>
+            Vehicle
+            <select name="vehicle" required>
+              <option value="">Select vehicle</option>
+              <option value="Cadillac Escalade ESV">Cadillac Escalade ESV</option>
+              <option value="Chevy Suburban">Chevy Suburban</option>
+            </select>
+          </label>
+          
+          <label>
+            Date
+            <input type="date" name="serviceDate" required />
+          </label>
+          
+          <label>
+            Time
+            <input type="time" name="serviceTime" required />
+          </label>
+          
+          <label>
+            Pickup Address
+            <input type="text" name="pickupAddress" placeholder="Enter pickup address" required />
+          </label>
+          
+          <label>
+            Dropoff Address (Optional)
+            <input type="text" name="dropoffAddress" placeholder="Enter dropoff address" />
+          </label>
+        </div>
+        
+        <label>
+          Additional Notes
+          <textarea name="notes" placeholder="Any special requests or notes" rows="4"></textarea>
+        </label>
+        
+        <button class="primary-btn" type="submit">Request Booking</button>
+      </form>
+      
+      <div class="booking-features">
+        <div class="feature-item">
+          <strong>✓</strong>
+          <span>24/7 Availability</span>
+        </div>
+        <div class="feature-item">
+          <strong>✓</strong>
+          <span>Instant Confirmation</span>
+        </div>
+        <div class="feature-item">
+          <strong>✓</strong>
+          <span>Professional Chauffeurs</span>
+        </div>
+        <div class="feature-item">
+          <strong>✓</strong>
+          <span>Luxury Fleet</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>Black Crown Rides</strong>
+      <span>DFW Luxury Transportation</span>
+    </div>
+    <div>
+      <span>Licensed & Insured • Driver‑First Operations</span>
+      <span>© 2026 Black Crown Rides. All rights reserved.</span>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      const returnBtn = document.getElementById('return-mobile');
+      if (!returnBtn) return;
+      if (sessionStorage.getItem('forceDesktop') === '1') {
+        returnBtn.style.display = 'inline-flex';
+        returnBtn.addEventListener('click', () => {
+          sessionStorage.removeItem('forceDesktop');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
