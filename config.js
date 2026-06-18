@@ -12,7 +12,7 @@ const SITE_CONFIG = {
   serviceArea: 'Grapevine, Southlake, Colleyville, Keller, Trophy Club, Flower Mound',
   
   // Pricing (can be updated here)
-  hourlyRate: 79,
+  hourlyRate: 65,
   childSeatPrice: 10,
   
   // Service Types and Rates (per mile)
