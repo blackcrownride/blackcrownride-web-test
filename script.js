@@ -3,7 +3,7 @@ document.documentElement.style.colorScheme = 'light';
 
 // Load configuration from config.js if available, otherwise use defaults
 const CONTACT_EMAIL = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.contactEmail) || 'info@blackcrownride.com';
-const HOURLY_RATE = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.hourlyRate) || 79;
+const HOURLY_RATE = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.hourlyRate) || 59;
 const ESTIMATE_SPEED_MPH = 28;
 const ESTIMATE_MINUTES_BUFFER = 18;
 const ESTIMATE_MINUTES_PER_STOP = 8;
@@ -19,7 +19,7 @@ const pricingState = {
     'Chevy Suburban': 4
   },
   featuredRoutes: (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.featuredRoutes) || [
-    { label: 'DFW to Downtown Dallas', price: 125 },
+    { label: 'Service City to DAL or JSX Airport', price: 125 },
     { label: 'DAL to Fort Worth', price: 165 },
     { label: 'Dallas to Austin', price: 699 }
   ]

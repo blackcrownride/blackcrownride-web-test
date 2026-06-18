@@ -12,7 +12,7 @@ const SITE_CONFIG = {
   serviceArea: 'Grapevine, Southlake, Colleyville, Keller, Trophy Club, Flower Mound',
   
   // Pricing (can be updated here)
-  hourlyRate: 65,
+  hourlyRate: 59,
   childSeatPrice: 10,
   
   // Service Types and Rates (per mile)
@@ -24,12 +24,12 @@ const SITE_CONFIG = {
   // Featured Routes
   featuredRoutes: [
     {
-      label: 'DFW to Downtown Dallas',
+      label: 'Service City to DAL or JSX Airport',
       price: 125,
-      description: 'Direct airport transfer to downtown Dallas hotels and business district.',
+      description: 'Flat-rate airport transfer from the service city to Dallas Love Field or JSX.',
       features: [
-        'DFW Airport pickup',
-        'Downtown Dallas dropoff',
+        'Service city pickup',
+        'DAL or JSX airport dropoff',
         'Luggage assistance included'
       ]
     },

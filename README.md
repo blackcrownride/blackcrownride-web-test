@@ -18,12 +18,12 @@ All site settings can be easily updated in `config.js`:
 ### Contact Information
 ```javascript
 contactEmail: 'info@blackcrownride.com',
-phoneNumber: '(909) 235‑0670',
+phoneNumber: '+1 (817) 760-8555',
 ```
 
 ### Pricing
 ```javascript
-hourlyRate: 79,
+hourlyRate: 59,
 childSeatPrice: 10,
 serviceMileRates: {
   'Cadillac Escalade ESV': 4,
@@ -34,7 +34,7 @@ serviceMileRates: {
 ### Featured Routes
 ```javascript
 featuredRoutes: [
-  { label: 'DFW to Downtown Dallas', price: 125 },
+  { label: 'Service City to DAL or JSX Airport', price: 125 },
   { label: 'DAL to Fort Worth', price: 165 },
   { label: 'Dallas to Austin', price: 699 },
   { label: 'Houston to Austin', price: 749 }
