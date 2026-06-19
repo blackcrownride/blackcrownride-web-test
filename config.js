@@ -9,7 +9,7 @@ const SITE_CONFIG = {
   // Business Information
   businessName: 'Black Crown Rides',
   tagline: 'Black Car Service',
-  serviceArea: 'Grapevine, Southlake, Colleyville, Keller, Trophy Club, Flower Mound',
+  serviceArea: 'Grapevine, Southlake, Colleyville, Keller, Trophy Club, Westlake, Flower Mound',
   
   // Pricing (can be updated here)
   hourlyRate: 59,
@@ -51,6 +51,26 @@ const SITE_CONFIG = {
         '3-hour premium ride',
         'Comfort stops included',
         'City-to-city service'
+      ]
+    },
+    {
+      label: 'DAL or JSX',
+      price: 125,
+      description: 'Direct airport transfer to Dallas Love Field or JSX.',
+      features: [
+        'Airport pickup',
+        'DAL or JSX dropoff',
+        'Luggage assistance included'
+      ]
+    },
+    {
+      label: 'Grapevine to DAL or JSX',
+      price: 90,
+      description: 'Flat-rate service from Grapevine to Dallas Love Field or JSX airports.',
+      features: [
+        'Grapevine pickup',
+        'DAL or JSX airport dropoff',
+        'Professional chauffeur'
       ]
     },
   ],
