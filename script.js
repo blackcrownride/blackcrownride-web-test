@@ -16,7 +16,6 @@ const pricingState = {
   hourlyRate: HOURLY_RATE,
   serviceMileRates: (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.serviceMileRates) || {
     'Cadillac Escalade ESV': 4,
-    'Chevy Suburban': 4
   },
   featuredRoutes: (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.featuredRoutes) || [
     { label: 'Service City to DAL or JSX Airport', price: 125 },

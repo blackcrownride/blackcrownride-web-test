@@ -7,7 +7,7 @@ const SITE_CONFIG = {
   phoneNumber: '+1 (817) 760-8555',
   
   // Business Information
-  businessName: 'Black Crown Rides',
+  businessName: 'Black Crown Ride',
   tagline: 'Black Car Service',
   serviceArea: 'Grapevine, Southlake, Colleyville, Keller, Trophy Club, Westlake, Flower Mound',
   
@@ -18,7 +18,6 @@ const SITE_CONFIG = {
   // Service Types and Rates (per mile)
   serviceMileRates: {
     'Cadillac Escalade ESV': 4,
-    'Chevy Suburban': 4
   },
   
   // Featured Routes

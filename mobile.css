@@ -1020,6 +1020,21 @@ body.booking-hourly .hourly-only {
   color: var(--gold);
 }
 
+.social-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  display: inline-block;
+}
+
+.social-link:hover {
+  background-color: rgba(240, 178, 71, 0.1);
+  color: var(--gold);
+}
+
 
 .roundtrip-stops { display:grid; gap:12px; }
 .roundtrip-leg { display:grid; gap:10px; padding:12px; border:1px solid rgba(240,178,71,0.5); border-radius:12px; background: rgba(0,0,0,0.6); }

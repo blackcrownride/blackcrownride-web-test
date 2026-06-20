@@ -7,7 +7,6 @@ A static website for Black Crown Rides, a premium black car chauffeur service in
 - **Responsive Design**: Separate desktop and mobile experiences
 - **Email-Based Booking**: All booking requests are sent via email
 - **Dynamic Pricing**: Configurable rates and featured routes
-- **Vehicle Selection**: Choose between Cadillac Escalade ESV and Chevy Suburban
 - **Add-ons**: Child seats, luggage tracking, and gratuity options
 - **Promo Codes**: Support for discount codes
 
@@ -27,7 +26,6 @@ hourlyRate: 59,
 childSeatPrice: 10,
 serviceMileRates: {
   'Cadillac Escalade ESV': 4,
-  'Chevy Suburban': 4
 }
 ```
 
