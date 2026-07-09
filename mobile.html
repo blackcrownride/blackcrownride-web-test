@@ -9,6 +9,13 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
   <link rel="stylesheet" href="mobile.css" />
+  <style>
+    /* Hide duplicate brand in hero because header displays the company name and tagline */
+    .hero .company-name,
+    .hero .eyebrow {
+      display: none !important;
+    }
+  </style>
   <script src="config.js"></script>
   <script>
     (function () {
@@ -29,6 +36,10 @@
     <a class="brand-mark" href="#book">
       <img src="assets/logo.png" alt="Black Crown Ride" class="brand-logo" />
     </a>
+    <div class="brand-text">
+      <span>Black Crown Ride Company</span>
+      <small>DFW Luxury Transportation</small>
+    </div>
     <div class="phone-section">
       <a class="phone-button" href="tel:+18177608555">+1 (817) 760-8555</a>
       <span class="call-to-reserve">Call or Text for Reserve</span>
@@ -139,20 +150,20 @@
           </select>
         </label>
         
-        <div id="hourly-fields">
+        <div id="address-fields">
           <label>
             Pickup Address
-            <input type="text" name="pickupAddress" placeholder="Enter pickup address" />
+            <input type="text" name="pickupAddress" placeholder="Enter pickup address" required />
           </label>
           <label>
-            Estimated Hours
-            <input type="number" name="estimatedHours" min="1" placeholder="Number of hours" />
+            Dropoff Address
+            <input type="text" name="dropoffAddress" placeholder="Enter dropoff address" />
           </label>
         </div>
-        
+
         <div id="route-fields" style="display: none;">
           <label>
-            Route
+            Route (optional)
             <select name="selectedRoute">
               <option value="">Select route</option>
               <option value="Service City to DAL or JSX Airport - $125">Service City to DAL or JSX Airport - $125</option>
@@ -167,7 +178,8 @@
           <textarea name="notes" placeholder="Any special requests or notes" rows="3"></textarea>
         </label>
         
-        <button class="primary-btn" type="submit">Request Booking</button>
+        <button class="primary-btn" type="button" onclick="submitInquiry(document.getElementById('simple-booking-form'))">Request Booking</button>
+        <div id="form-status" class="form-status" aria-live="polite" style="margin-top:10px;"></div>
       </form>
       <div class="contact">
         <strong>+1 (817) 760-8555</strong>
@@ -175,6 +187,15 @@
       </div>
       <div class="contact" style="margin-top: 16px; text-align: left;">
         <strong style="display: block; margin-bottom: 8px;">Service Areas</strong>
+        <ul class="service-area-list" style="list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; margin-top: 8px; font-size: 0.95rem;">
+          <li>Grapevine</li>
+          <li>Southlake</li>
+          <li>Colleyville</li>
+          <li>Keller</li>
+          <li>Trophy Club</li>
+          <li>Westlake</li>
+          <li>Flower Mound</li>
+        </ul>
       </div>
     </section>
   </main>
