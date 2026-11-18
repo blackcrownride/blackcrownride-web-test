@@ -182,8 +182,8 @@ const getPromoDiscount = (baseTotal, form = getForm()) => {
 
 const estimateFromForm = (form = getForm()) => {
   if (!form) return null;
-  const pickup = form.querySelector('[name="pickupLocation"]')?.value.trim();
-  const dropoff = form.querySelector('[name="dropoffLocation"]')?.value.trim();
+  const pickup = (form.querySelector('[name="pickupAddress"]')?.value || form.querySelector('[name="pickupLocation"]')?.value || '').trim();
+  const dropoff = (form.querySelector('[name="dropoffAddress"]')?.value || form.querySelector('[name="dropoffLocation"]')?.value || '').trim();
   if (!pickup || !dropoff) return null;
 
   const stopCount = getStopsCount(form);
@@ -321,15 +321,21 @@ const addStop = (form = getForm()) => {
 
 const collectFormLines = (form) => {
   const data = new FormData(form);
-  const estimate = estimateFromForm(form);
+  // don't include temporary estimate in user email; keep addresses as pickupAddress/dropoffAddress if available
+  const pickupVal = data.get('pickupAddress') || data.get('pickupLocation') || '';
+  const dropoffVal = data.get('dropoffAddress') || data.get('dropoffLocation') || '';
+  const dateVal = data.get('pickupDate') || data.get('serviceDate') || '';
+  const timeVal = data.get('pickupTime') || data.get('serviceTime') || '';
+  const vehicleVal = data.get('serviceType') || data.get('vehicle') || '';
+
   const lines = [
     `Name: ${data.get('fullName') || ''}`,
     `Phone: ${data.get('contactNumber') || ''}`,
-    `Date: ${data.get('pickupDate') || ''}`,
-    `Time: ${data.get('pickupTime') || ''}`,
-    `Vehicle: ${data.get('serviceType') || ''}`,
-    `Pickup: ${data.get('pickupLocation') || ''}`,
-    `Dropoff: ${data.get('dropoffLocation') || ''}`
+    `Date: ${dateVal}`,
+    `Time: ${timeVal}`,
+    `Vehicle: ${vehicleVal}`,
+    `Pickup: ${pickupVal}`,
+    `Dropoff: ${dropoffVal}`
   ];
 
   const stops = Array.from(form.querySelectorAll('[data-route-point="stop"]'))
@@ -344,18 +350,73 @@ const collectFormLines = (form) => {
     lines.push(`Child seats: ${data.get('forwardFacingSeats') || 0} forward-facing, ${data.get('boosterSeats') || 0} booster`);
   }
   if (data.get('promoCode')) lines.push(`Promo code: ${data.get('promoCode')}`);
-  if (estimate) lines.push(`Temporary estimate: ${formatCurrency(estimate.total)} (${estimate.hours.toFixed(1)} hrs approx.)`);
 
   return lines;
 };
 
 const submitInquiry = (form) => {
-  if (!form.reportValidity()) return;
-  const subject = encodeURIComponent('Chauffeured Service Inquiry');
-  const body = encodeURIComponent(['Hello,', '', 'I would like to request chauffeured service.', '', ...collectFormLines(form), '', 'Thanks!'].join('\n'));
-  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  const theForm = form || getForm();
+  const data = new FormData(theForm);
+  const fullName = (data.get('fullName') || '').trim();
+  const contactNumber = (data.get('contactNumber') || '').trim();
+  const pickup = (data.get('pickupAddress') || data.get('pickupLocation') || '').trim();
+  // dropoff is optional now
+  const dropoff = (data.get('dropoffAddress') || data.get('dropoffLocation') || '').trim();
+  const selectedRoute = (data.get('selectedRoute') || '').trim();
+
+  if (!fullName || !contactNumber) {
+    alert('Please enter your name and contact number so we can respond.');
+    if (!fullName) (theForm.querySelector('[name="fullName"]') || document.querySelector('[name="fullName"]'))?.focus();
+    else (theForm.querySelector('[name="contactNumber"]') || document.querySelector('[name="contactNumber"]'))?.focus();
+    return;
+  }
+
+  if (!pickup) {
+    alert('Please enter a pickup address.');
+    (theForm.querySelector('[name="pickupAddress"]') || document.querySelector('[name="pickupAddress"]'))?.focus();
+    return;
+  }
+
+  const subjectText = 'Chauffeured Service Inquiry';
+  const lines = collectFormLines(theForm);
+  const fullBody = ['Hello,', '', 'I would like to request chauffeured service.', '', ...lines, '', 'Thanks!'].join('\n');
+  const mailtoFull = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(fullBody)}`;
+
+  // Copy full details to clipboard (best-effort)
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(fullBody).then(() => {
+      const status = document.getElementById('form-status');
+      if (status) status.textContent = 'Full inquiry copied to clipboard. Opening mail client...';
+    }).catch(() => {
+      const status = document.getElementById('form-status');
+      if (status) status.textContent = 'Opening mail client...';
+    });
+  }
+
+  // Open mailto with full body via programmatic anchor
+  let opened = false;
+  try {
+    const a = document.createElement('a');
+    a.href = mailtoFull;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    opened = true;
+  } catch (err) {
+    try { window.open(mailtoFull, '_blank'); opened = true; } catch (e) { opened = false; }
+  }
+
   const status = document.getElementById('form-status');
-  if (status) status.textContent = 'Opening your email app with the inquiry details.';
+  if (status) {
+    if (!opened) {
+      status.innerHTML = `If your mail client didn't open, <a href="${mailtoFull}">open email manually</a>. Full details copied to clipboard.`;
+    } else {
+      status.innerHTML = `Mail client should be opening. If not, <a href="${mailtoFull}">open email manually</a>. Full details copied to clipboard.`;
+    }
+  }
 };
 
 const initBookingForm = (form) => {
@@ -435,11 +496,15 @@ const initSimpleBookingForm = () => {
   const form = document.getElementById('simple-booking-form');
   if (!form) return;
 
-  const hourlyFields = document.getElementById('hourly-fields');
+  const addressFields = document.getElementById('address-fields');
   const routeFields = document.getElementById('route-fields');
   const toggleButtons = form.querySelectorAll('[data-booking-type]');
 
-  // Toggle between hourly and route
+  // Initial visibility
+  if (addressFields) addressFields.style.display = 'block';
+  if (routeFields) routeFields.style.display = 'none';
+
+  // Toggle between hourly and route (addresses stay visible)
   toggleButtons.forEach(button => {
     button.addEventListener('click', (e) => {
       e.preventDefault();
@@ -448,63 +513,31 @@ const initSimpleBookingForm = () => {
       // Update active state
       toggleButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
-      
-      // Show/hide fields
-      if (type === 'hourly') {
-        hourlyFields.style.display = 'block';
-        routeFields.style.display = 'none';
-        // Make hourly fields required
-        form.querySelector('[name="pickupAddress"]').required = true;
-        form.querySelector('[name="estimatedHours"]').required = true;
-        form.querySelector('[name="selectedRoute"]').required = false;
-      } else {
-        hourlyFields.style.display = 'none';
-        routeFields.style.display = 'block';
-        // Make route field required
-        form.querySelector('[name="pickupAddress"]').required = false;
-        form.querySelector('[name="estimatedHours"]').required = false;
-        form.querySelector('[name="selectedRoute"]').required = true;
+
+      // Show/hide route selector only; address fields remain visible
+      if (routeFields) {
+        routeFields.style.display = type === 'route' ? 'block' : 'none';
       }
+
+      // Ensure pickup/dropoff are required and route selection is optional
+      const pickup = form.querySelector('[name="pickupAddress"]');
+      const dropoff = form.querySelector('[name="dropoffAddress"]');
+      const selectedRoute = form.querySelector('[name="selectedRoute"]');
+      if (pickup) pickup.required = true;
+      if (dropoff) dropoff.required = true;
+      if (selectedRoute) selectedRoute.required = false;
     });
   });
 
   // Handle form submission
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    const formData = new FormData(form);
-    const activeType = form.querySelector('[data-booking-type].active').dataset.bookingType;
-    
-    let emailBody = `Hello,\n\nI would like to request a booking:\n\n`;
-    emailBody += `Name: ${formData.get('fullName')}\n`;
-    emailBody += `Contact: ${formData.get('contactNumber')}\n`;
-    emailBody += `Date: ${formData.get('serviceDate')}\n`;
-    emailBody += `Time: ${formData.get('serviceTime')}\n`;
-    emailBody += `Vehicle: ${formData.get('vehicle')}\n\n`;
-    
-    if (activeType === 'hourly') {
-      emailBody += `Service Type: Hourly\n`;
-      emailBody += `Pickup Address: ${formData.get('pickupAddress')}\n`;
-      emailBody += `Estimated Hours: ${formData.get('estimatedHours')}\n`;
-    } else {
-      emailBody += `Service Type: Set Route\n`;
-      emailBody += `Selected Route: ${formData.get('selectedRoute')}\n`;
-    }
-    
-    if (formData.get('notes')) {
-      emailBody += `\nAdditional Notes:\n${formData.get('notes')}\n`;
-    }
-    
-    emailBody += `\nThank you!`;
-    
-    const subject = activeType === 'hourly' 
-      ? 'Hourly Chauffeur Service Request'
-      : 'Set Route Booking Request';
-    
-    const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-    window.location.href = mailtoLink;
+    submitInquiry(form);
   });
 };
 
 initSimpleBookingForm();
 document.querySelectorAll('.booking-form').forEach(initBookingForm);
+
+// Expose submit helper for inline onclick fallback
+window.submitInquiry = submitInquiry;
