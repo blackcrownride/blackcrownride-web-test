@@ -441,6 +441,9 @@ main {
 
 .hero-content h1 {
   font-size: clamp(2.8rem, 4vw, 4rem);
+  line-height: 1.08;
+  font-weight: 700;
+  color: var(--mist);
   margin: 14px 0 16px;
   letter-spacing: 0.01em;
 }
@@ -1684,6 +1687,13 @@ body.booking-hourly .hourly-only {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Keep the primary headline available immediately, including before JS runs. */
+.hero.reveal,
+.js-ready .hero.reveal {
+  opacity: 1;
+  transform: none;
 }
 
 .js-ready .reveal {
