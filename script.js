@@ -54,7 +54,9 @@ if ('IntersectionObserver' in window) {
         }
       });
     },
-    { threshold: 0.2 }
+    // Long sections (especially stacked mobile pricing cards) may never fill
+    // 20% of the viewport. Reveal them as soon as any part enters the viewport.
+    { threshold: 0 }
   );
   revealItems.forEach((item) => observer.observe(item));
 } else {
