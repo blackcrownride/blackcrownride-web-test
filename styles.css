@@ -336,16 +336,23 @@ h1, h2, h3, h4 {
   right: 32px;
   z-index: 10;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   pointer-events: none;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
 }
 
 .brand-mark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: min(120px, 32vw);
+  width: min(88px, 22vw);
   aspect-ratio: 1;
   border-radius: 18px;
   pointer-events: auto;
@@ -381,12 +388,13 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   pointer-events: auto;
+  margin-top: 6px;
 }
 
 .call-to-reserve {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.9);
   letter-spacing: 0.04em;
   text-transform: none;
@@ -2230,5 +2238,73 @@ body.booking-hourly .hourly-only {
   }
   .service-area-list li::before {
     font-size: 1rem;
+  }
+}
+
+/* Keep the contact number with the company name in the top brand lockup. */
+.brand-header {
+  justify-content: flex-start;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.brand-mark {
+  width: min(88px, 22vw);
+  flex: 0 0 min(88px, 22vw);
+}
+
+.brand-text .phone-section {
+  margin-top: 6px;
+  gap: 10px;
+}
+
+.brand-text .phone-button {
+  padding: 6px 12px;
+  font-size: 0.82rem;
+}
+
+.brand-text .call-to-reserve {
+  display: inline;
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+@media (max-width: 768px) {
+  .brand-header {
+    top: 14px;
+    left: 18px;
+    right: 18px;
+  }
+
+  .brand-lockup {
+    gap: 10px;
+  }
+
+  .brand-mark {
+    width: 58px;
+    flex-basis: 58px;
+  }
+
+  .brand-text .phone-section {
+    flex-wrap: wrap;
+    gap: 5px 8px;
+    margin-top: 5px;
+  }
+
+  .brand-text .phone-button {
+    padding: 5px 8px;
+    font-size: 0.72rem;
+  }
+
+  .brand-text .call-to-reserve {
+    font-size: 0.64rem;
   }
 }

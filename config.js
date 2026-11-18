@@ -12,7 +12,7 @@ const SITE_CONFIG = {
   serviceArea: 'Grapevine, Southlake, Colleyville, Keller, Trophy Club, Westlake, Flower Mound',
   
   // Pricing (can be updated here)
-  hourlyRate: 59,
+  hourlyRate: 80,
   childSeatPrice: 10,
   
   // Service Types and Rates (per mile)
@@ -22,6 +22,16 @@ const SITE_CONFIG = {
   
   // Featured Routes
   featuredRoutes: [
+    {
+      label: 'Concerts or Games (Round Trip)',
+      price: 300,
+      description: 'Round-trip chauffeured transportation for concerts, games, and sporting events.',
+      features: [
+        'Round-trip service',
+        'Concert and game transportation',
+        'Dedicated chauffeur'
+      ]
+    },
     {
       label: 'Service City to DAL or JSX Airport',
       price: 125,
@@ -63,12 +73,12 @@ const SITE_CONFIG = {
       ]
     },
     {
-      label: 'Grapevine to DAL or JSX',
-      price: 60,
-      description: 'Flat-rate service from Grapevine to Dallas Love Field or JSX airports.',
+      label: 'Grapevine to DAL',
+      price: 110,
+      description: 'Flat-rate chauffeured service from Grapevine to Dallas Love Field.',
       features: [
         'Grapevine pickup',
-        'DAL or JSX airport dropoff',
+        'Dallas Love Field dropoff',
         'Professional chauffeur'
       ]
     },

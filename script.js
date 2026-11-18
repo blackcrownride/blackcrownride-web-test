@@ -3,7 +3,7 @@ document.documentElement.style.colorScheme = 'light';
 
 // Load configuration from config.js if available, otherwise use defaults
 const CONTACT_EMAIL = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.contactEmail) || 'info@blackcrownride.com';
-const HOURLY_RATE = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.hourlyRate) || 59;
+const HOURLY_RATE = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.hourlyRate) || 80;
 const ESTIMATE_SPEED_MPH = 28;
 const ESTIMATE_MINUTES_BUFFER = 18;
 const ESTIMATE_MINUTES_PER_STOP = 8;
