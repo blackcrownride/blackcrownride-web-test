@@ -4,6 +4,7 @@ document.documentElement.style.colorScheme = 'light';
 // Load configuration from config.js if available, otherwise use defaults
 const CONTACT_EMAIL = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.contactEmail) || 'info@blackcrownride.com';
 const HOURLY_RATE = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.hourlyRate) || 80;
+const HOURLY_MINIMUM_HOURS = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.hourlyMinimumHours) || 3;
 const ESTIMATE_SPEED_MPH = 28;
 const ESTIMATE_MINUTES_BUFFER = 18;
 const ESTIMATE_MINUTES_PER_STOP = 8;
@@ -191,8 +192,11 @@ const estimateFromForm = (form = getForm()) => {
   const stopCount = getStopsCount(form);
   const minimumMinutes = ESTIMATE_MINUTES_BUFFER + stopCount * ESTIMATE_MINUTES_PER_STOP;
   const estimatedMiles = Math.max(12, 18 + stopCount * 8);
-  const estimatedHours = Math.max(1, Math.ceil(((estimatedMiles / ESTIMATE_SPEED_MPH) * 60 + minimumMinutes) / 30) / 2);
   const serviceType = getSelectedServiceType(form);
+  const estimatedHours = Math.max(
+    serviceType === 'Hourly' ? HOURLY_MINIMUM_HOURS : 1,
+    Math.ceil(((estimatedMiles / ESTIMATE_SPEED_MPH) * 60 + minimumMinutes) / 30) / 2
+  );
   const baseTotal = Math.round((estimatedHours * pricingState.hourlyRate + estimatedMiles * serviceMileRate(serviceType)) * 100) / 100;
   const addOnsTotal = getAddOnsTotal(form);
   const discount = getPromoDiscount(baseTotal, form);
@@ -339,6 +343,11 @@ const collectFormLines = (form) => {
     `Pickup: ${pickupVal}`,
     `Dropoff: ${dropoffVal}`
   ];
+
+  if (data.get('serviceType') === 'Hourly') {
+    const minimumTotal = HOURLY_MINIMUM_HOURS * pricingState.hourlyRate;
+    lines.push(`Hourly minimum: ${HOURLY_MINIMUM_HOURS} hours at $${pricingState.hourlyRate}/hour ($${minimumTotal} minimum).`);
+  }
 
   const stops = Array.from(form.querySelectorAll('[data-route-point="stop"]'))
     .map((input, index) => `Stop ${index + 1}: ${input.value.trim()}`)

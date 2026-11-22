@@ -13,6 +13,7 @@ const SITE_CONFIG = {
   
   // Pricing (can be updated here)
   hourlyRate: 80,
+  hourlyMinimumHours: 3,
   childSeatPrice: 10,
   
   // Service Types and Rates (per mile)

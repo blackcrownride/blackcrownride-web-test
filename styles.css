@@ -265,7 +265,7 @@ h1, h2, h3, h4 {
 .brand-text span {
   display: block;
   font-family: "Times New Roman", "Georgia", serif;
-  font-size: 1.65rem;
+  font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: none;
@@ -281,7 +281,7 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 768px) {
-  .brand-text span { font-size: 1.05rem; }
+  .brand-text span { font-size: 1.12rem; }
   .brand-text small { font-size: 0.75rem; }
 }
 
@@ -331,7 +331,7 @@ h1, h2, h3, h4 {
 
 .brand-header {
   position: absolute;
-  top: 22px;
+  top: 30px;
   left: 32px;
   right: 32px;
   z-index: 10;
@@ -2259,13 +2259,20 @@ body.booking-hourly .hourly-only {
 }
 
 .brand-text .phone-section {
-  margin-top: 6px;
+  margin-top: 9px;
   gap: 10px;
 }
 
 .brand-text .phone-button {
-  padding: 6px 12px;
-  font-size: 0.82rem;
+  padding: 7px 13px;
+  font-size: 0.9rem;
+}
+
+.hourly-minimum {
+  color: var(--gold-light);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: -10px;
 }
 
 .brand-text .call-to-reserve {
@@ -2279,7 +2286,7 @@ body.booking-hourly .hourly-only {
 
 @media (max-width: 768px) {
   .brand-header {
-    top: 14px;
+    top: 20px;
     left: 18px;
     right: 18px;
   }
@@ -2300,8 +2307,8 @@ body.booking-hourly .hourly-only {
   }
 
   .brand-text .phone-button {
-    padding: 5px 8px;
-    font-size: 0.72rem;
+    padding: 6px 9px;
+    font-size: 0.78rem;
   }
 
   .brand-text .call-to-reserve {
